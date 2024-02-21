@@ -3,9 +3,8 @@ from django.http import HttpRequest, HttpResponse
 from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
 from .forms import SignupForm
-# Create your views here.
-def index(reqeust):
-    return HttpResponse("<h1>Hello Django</h1>")
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate , login
 
 
 class  SignUpView(CreateView):
@@ -18,5 +17,23 @@ class  SignUpView(CreateView):
         return redirect('profile')
 
 
+def login_page(request):
+    if request.method == "GET":
+        return render(request,'login.html')
+    elif request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None :
+            login(request, user)
+            return redirect('profile')
+        else:
+            print("worng username or password")
+            return redirect('login')
+
+
+
+
+@login_required
 def profile(reqeust):
     return HttpResponse("<h1>only authenticateed users  can see  this page </h1>")
