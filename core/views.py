@@ -14,6 +14,7 @@ class  SignUpView(CreateView):
     
     def form_valid(self, form):
         user = form.save()
+        login(self.request,user)
         return redirect('profile')
     
     def get(self,  *args, **kwargs):
