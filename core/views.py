@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
 from .forms import SignupForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate , login
+from django.contrib.auth import authenticate , login , logout
 
 
 class  SignUpView(CreateView):
@@ -15,25 +15,36 @@ class  SignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         return redirect('profile')
-
+    
+    def get(self,  *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('profile')
+        return super(SignUpView,self).get( *args, **kwargs)
+   
 
 def login_page(request):
-    if request.method == "GET":
-        return render(request,'login.html')
-    elif request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user is not None :
-            login(request, user)
-            return redirect('profile')
-        else:
-            print("worng username or password")
-            return redirect('login')
+    if request.user.is_authenticated:
+        return redirect('profile')
+    else:
+        if request.method == "GET":
+            return render(request,'login.html')
+        elif request.method == "POST":
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None :
+                login(request, user)
+                return redirect('profile')
+            else:
+                print("worng username or password")
+                return redirect('login')
+
+def logout_user(request):
+    logout(request)
+    return  redirect('login')
 
 
 
-
-@login_required
+@login_required (login_url='login')
 def profile(reqeust):
-    return HttpResponse("<h1>only authenticateed users  can see  this page </h1>")
+    return render(reqeust, 'profile.html')
