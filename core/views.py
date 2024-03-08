@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect
 from django.http import HttpRequest, HttpResponse
 from django.views.generic.edit import CreateView
-from django.contrib.auth.models import User
+from .models import User
 from .forms import SignupForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate , login , logout
