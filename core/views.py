@@ -1,10 +1,11 @@
 from django.shortcuts import render , redirect
 from django.http import HttpRequest, HttpResponse
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView , UpdateView
 from .models import User
 from .forms import SignupForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate , login , logout
+from django.utils.decorators import method_decorator
 
 
 class  SignUpView(CreateView):
@@ -49,3 +50,12 @@ def logout_user(request):
 @login_required (login_url='login')
 def profile(reqeust):
     return render(reqeust, 'profile.html')
+
+@method_decorator(login_required (login_url='login'),name='dispatch')
+class AccountsSettingsView(UpdateView):
+    model = User
+    fields = ['first_name', 'last_name' , 'profile_pic' , 'bio']
+    template_name = 'account_settings.html'
+
+    def get_object(self, queryset=None):
+        return User.objects.get(id=self.request.user.id)
