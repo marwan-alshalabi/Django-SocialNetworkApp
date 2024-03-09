@@ -1,14 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Settings</title>
-</head>
-<body>
-    <form method="POST">
-        {% csrf_token %}
-        {{form}}
-    </form>
-</body>
-</html>
+{%  extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block title %}
+Settings
+{% endblock title %}
+
+
+{% block navbar %}
+
+{%  include 'navbar.html' %}
+
+{% endblock navbar %}
+
+{% block content %}
+<form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    <input class="btn btn-primary" type="submit" name="Update Information">
+</form>
+
+{% endblock content %}
+
