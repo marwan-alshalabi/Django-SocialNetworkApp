@@ -1,7 +1,7 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render , redirect
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
 from django.views.generic.edit import CreateView , UpdateView 
 from django.views.generic.list import  ListView
 from .models import * 
@@ -88,6 +88,15 @@ class FriendProfile(ListView):
     model = Post
     template_name = 'friend-profile.html'
     paginate_by = 5
+
+    def get(self, *args, **kwargs):
+        friend_username = self.kwargs['username']
+        user_username = self.request.user.username
+        if friend_username == user_username:
+           return redirect('profile')
+        else:
+            return super(FriendProfile,self).get(*args, **kwargs)
+    
 
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
