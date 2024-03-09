@@ -82,3 +82,14 @@ class CreatePost(CreateView):
         form.instance.user = user
         return super().form_valid(form)
     
+
+@method_decorator(login_required(login_url='login'),name='dispatch')
+class FriendProfile(ListView):
+    model = Post
+    template_name = 'friend-profile.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        friend_username = self.kwargs['username']
+        friend = User.objects.get(username = friend_username)
+        return Post.objects.filter(user = friend).order_by('-date_created')
