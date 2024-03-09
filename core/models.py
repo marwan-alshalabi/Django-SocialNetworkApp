@@ -6,6 +6,9 @@ class User(AbstractUser):
     profile_pic = models.ImageField(default='profile_pics/default.jpg',upload_to='profile_pics')
     bio = models.TextField(null=True , blank=True ,max_length=500,default="")
 
+    def get_num_posts(self):
+        return Post.objects.filter(user=self).count()
+
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     caption = models.TextField(max_length=600, null=False)

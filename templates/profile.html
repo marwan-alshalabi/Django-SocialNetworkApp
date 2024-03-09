@@ -23,7 +23,7 @@ My Profile
 
             <h3 >{{request.user.first_name}} {{request.user.last_name}}</h3>
             <a href="#"><h4 >@{{request.user.username}}</h4></a>
-            <!-- <h6>{{request.user.get_num_posts}} Posts</h6> -->
+            <h6>{{request.user.get_num_posts}} Posts</h6>
             <p>{{request.user.bio}}</p>
 
             <a href="{% url 'account-settings' %}"> <h6>Account Settings</h6> </a>
