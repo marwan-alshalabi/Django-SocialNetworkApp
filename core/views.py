@@ -1,7 +1,10 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView , UpdateView 
-from .models import *
+from django.views.generic.list import  ListView
+from .models import * 
 from .forms import SignupForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate , login , logout
@@ -47,10 +50,14 @@ def logout_user(request):
     logout(request)
     return redirect('login')
 
+@method_decorator(login_required(login_url='login'),name='dispatch')
+class Profile(ListView):
+    model = Post
+    template_name = 'profile.html'
+    paginate_by = 2
 
-@login_required(login_url='login')
-def profile(request):
-    return render(request,'profile.html')
+    def get_queryset(self):
+        return Post.objects.filter(user = self.request.user).order_by('-date_created')
 
 
 @method_decorator(login_required(login_url='login'),name='dispatch')
