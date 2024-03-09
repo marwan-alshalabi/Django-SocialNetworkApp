@@ -54,7 +54,7 @@ def logout_user(request):
 class Profile(ListView):
     model = Post
     template_name = 'profile.html'
-    paginate_by = 2
+    paginate_by = 5
 
     def get_queryset(self):
         return Post.objects.filter(user = self.request.user).order_by('-date_created')

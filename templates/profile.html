@@ -31,29 +31,23 @@ My Profile
     </div>
 
 
-{% for post in object_list  %}
-    <h6>{{post.caption}}</h6>
-    <h6>{{post.date_created}}</h6>
-    <h3>____</h3>
-{% endfor %}
-    
 
 
-<!--  <div class="col-md-8" >-->
-<!--        <div class="card card-body"style="border-radius:25px; min-height:100%;">-->
-<!--            <a href="#" style="margin-left: 2%;"> <h1> <i class="fa fa-pencil fa-lg"></i> New Post...</h1> </a>-->
-<!--                {% for post in object_list %}-->
-<!--                <div class="card" style="margin: 2%;">-->
-<!--                    <div class="card-body">-->
-<!--                        <p class="card-text">{{post.caption}}</p>-->
-<!--                        <a href="#" class="card-link">{{post.date_created}}</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                {% endfor %}-->
-<!--            pagination here -->
-<!--        </div>-->
-<!--        <br>-->
-<!--    </div> -->
+ <div class="col-md-8" >
+       <div class="card card-body"style="border-radius:25px; min-height:100%;">
+           <a href="{% url 'new-post' %}" style="margin-left: 2%;"> <h1> <i class="fa fa-pencil fa-lg"></i> New Post...</h1> </a>
+               {% for post in object_list %}
+               <div class="card" style="margin: 2%;">
+                   <div class="card-body">
+                       <p class="card-text">{{post.caption}}</p>
+                       <a href="#" class="card-link">{{post.date_created}}</a>
+                   </div>
+               </div>
+               {% endfor %}
+           {% include 'pagination.html' %} 
+       </div>
+       <br>
+   </div>
 
 </div>
 
