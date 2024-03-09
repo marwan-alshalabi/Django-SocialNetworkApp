@@ -2,7 +2,7 @@
 {% load bootstrap5 %}
 
 {% block title %}
-My Profile
+{{friend.username}}
 {% endblock title %}
 
 
@@ -19,12 +19,14 @@ My Profile
 
     <div class="col-md-3" style="margin-left:4%; text-align: center;">
         <div class="card card-body" style="border-radius:25px;">
-            <img class="img-fluid img-thumbnail"  src="{{request.user.profile_pic.url}}" >
+            <img class="img-fluid img-thumbnail"  src="{{friend.profile_pic.url}}" >
 
-            <h3 >{{request.user.first_name}} {{request.user.last_name}}</h3>
-            <a href="#"><h4 >@{{request.user.username}}</h4></a>
-            <h6>{{request.user.get_num_posts}} Posts</h6>
-            <p>{{request.user.bio}}</p>
+            <h3 >{{friend.first_name}} {{friend.last_name}}</h3>
+            <a href="#"><h4 >@{{friend.username}}</h4></a>
+            <h6>{{friend.get_num_posts}} Posts</h6>
+            <p>{{friend.bio}}</p>
+            <a href="#"><button class="btn btn-success">Follow</button></a>
+            <a href="#"><button class="btn btn-danger">Unfollow</button></a>
         </div>
     </div>
 

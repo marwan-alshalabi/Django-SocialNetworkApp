@@ -89,6 +89,14 @@ class FriendProfile(ListView):
     template_name = 'friend-profile.html'
     paginate_by = 5
 
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        friend_username = self.kwargs['username']
+        friend = User.objects.get(username = friend_username)
+        context['friend'] = friend
+        return context
+
     def get_queryset(self):
         friend_username = self.kwargs['username']
         friend = User.objects.get(username = friend_username)
