@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
-from django.views.generic.edit import CreateView , UpdateView
-from .models import User
+from django.views.generic.edit import CreateView , UpdateView 
+from .models import *
 from .forms import SignupForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate , login , logout
@@ -62,3 +62,16 @@ class AccountSettingsView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+@method_decorator(login_required(login_url='login'),name='dispatch')
+class CreatePost(CreateView):
+    model = Post
+    fields = ['caption']
+    template_name = "new_post.html"
+    success_url = '/profile/'
+
+    def form_valid(self, form):
+        user = self.request.user
+        form.instance.user = user
+        return super().form_valid(form)
+    

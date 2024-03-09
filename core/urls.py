@@ -7,5 +7,6 @@ urlpatterns = [
  path('logout/',logout_user,name='logout'),
  path('profile/',profile,name='profile'),
  path('account-settings/',AccountSettingsView.as_view(),name='account-settings'),
+ path('new-post/',CreatePost.as_view(),name='new-post'),
 
 ]
