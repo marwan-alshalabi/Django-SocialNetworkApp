@@ -17,7 +17,7 @@ Welcome to the Django Social Network App repository! This project is a social ne
 - User authentication and authorization
 - Profile creation and customization
 - Friend requests and connections
-- Messaging system
+- Edit and delete Post
 - News feed for updates from friends
 - and more...
 
