@@ -149,3 +149,7 @@ class HomePage(ListView):
     template_name = "homepage.html"
     paginate_by = 5
 
+    def get_queryset(self):
+        followings = self.request.user.get_followings()
+        return Post.objects.filter(user_id__in=followings)
+
