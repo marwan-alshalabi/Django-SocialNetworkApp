@@ -13,6 +13,6 @@ urlpatterns = [
  path('follow/<int:id>/',follow_user,name='follow-user'),
  path('unfollow/<int:id>/',unfollow_user,name='unfollow-user'),
  path('home/',HomePage.as_view(),name='home-page'),
-
+ path('edit-post/<int:pk>/',EditPost.as_view(),name='edit-post'),
 
 ]

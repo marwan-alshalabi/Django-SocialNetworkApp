@@ -153,3 +153,10 @@ class HomePage(ListView):
         followings = self.request.user.get_followings()
         return Post.objects.filter(user_id__in=followings).order_by('-date_created')
 
+
+@method_decorator(login_required(login_url='login'),name='dispatch')
+class EditPost(UpdateView ):
+    model = Post
+    fields = ['caption']
+    template_name = "edit_post.html"
+    success_url = '/profile/'

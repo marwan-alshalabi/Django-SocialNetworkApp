@@ -1,0 +1,24 @@
+{%  extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block title %}
+Edit Post
+{% endblock title %}
+
+
+{% block navbar %}
+
+{%  include 'navbar.html' %}
+
+{% endblock navbar %}
+
+{% block content %}
+<br>
+<form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    <input class="btn btn-primary" type="submit" value="Edit">
+</form>
+
+{% endblock content %}
