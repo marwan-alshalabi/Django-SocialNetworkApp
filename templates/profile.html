@@ -21,7 +21,7 @@ My Profile
         <div class="card card-body" style="border-radius:25px;">
             <img class="img-fluid img-thumbnail"  src="{{request.user.profile_pic.url}}" >
 
-            <h3 >{{request.user.first_name}} {{request.user.last_name}}</h3>
+            <h4 >{{request.user.first_name}} {{request.user.last_name}}</h4>
             <a href="#"><h4 >@{{request.user.username}}</h4></a>
             <h6>{{request.user.get_num_posts}} Posts</h6>
             <p>{{request.user.bio}}</p>

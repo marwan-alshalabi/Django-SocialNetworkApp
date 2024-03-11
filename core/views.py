@@ -122,3 +122,10 @@ class SearchResulte(ListView):
         search_term = self.request.GET['search-term']
         qs = User.objects.filter(username__contains=search_term)
         return qs 
+@login_required(login_url='login')
+def follow_user(request,id):
+    user_A=request.user
+    user_B=User.objects.get(id=id)
+    new_friends = Friends(user_A=user_A,user_B=user_B)
+    new_friends.save()
+    return redirect('/user/'+user_B.username)

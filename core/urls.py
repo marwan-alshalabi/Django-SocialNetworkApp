@@ -10,6 +10,7 @@ urlpatterns = [
  path('new-post/',CreatePost.as_view(),name='new-post'),
  path('user/<str:username>/',FriendProfile.as_view(),name='friend-profile'),
  path('search/',SearchResulte.as_view(),name='search'),
+ path('follow/<int:id>/',follow_user,name='follow-user'),
 
 
 ]
