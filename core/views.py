@@ -2,7 +2,7 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render , redirect
 from django.http import HttpRequest, HttpResponse
-from django.views.generic.edit import CreateView , UpdateView 
+from django.views.generic.edit import CreateView , UpdateView , DeleteView
 from django.views.generic.list import  ListView
 from .models import * 
 from .forms import SignupForm
@@ -160,3 +160,9 @@ class EditPost(UpdateView ):
     fields = ['caption']
     template_name = "edit_post.html"
     success_url = '/profile/'
+
+
+class DeletePost(DeleteView):
+    model = Post
+    template_name = "post_confirm_delete.html"
+    success_url='/profile/'

@@ -14,5 +14,6 @@ urlpatterns = [
  path('unfollow/<int:id>/',unfollow_user,name='unfollow-user'),
  path('home/',HomePage.as_view(),name='home-page'),
  path('edit-post/<int:pk>/',EditPost.as_view(),name='edit-post'),
+ path('delete-post/<int:pk>/',DeletePost.as_view()),
 
 ]
