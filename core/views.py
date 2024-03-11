@@ -40,7 +40,7 @@ def login_page(request):
             user = authenticate(username=username,password=password)
             if user is not None:
                 login(request,user)
-                return redirect('profile')
+                return redirect('home-page')
             else:
                 print("wrong username or password")
                 return redirect('login')
@@ -151,5 +151,5 @@ class HomePage(ListView):
 
     def get_queryset(self):
         followings = self.request.user.get_followings()
-        return Post.objects.filter(user_id__in=followings)
+        return Post.objects.filter(user_id__in=followings).order_by('-date_created')
 
