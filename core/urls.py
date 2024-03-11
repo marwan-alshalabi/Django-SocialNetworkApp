@@ -9,6 +9,7 @@ urlpatterns = [
  path('account-settings/',AccountSettingsView.as_view(),name='account-settings'),
  path('new-post/',CreatePost.as_view(),name='new-post'),
  path('user/<str:username>/',FriendProfile.as_view(),name='friend-profile'),
+ path('search/',SearchResulte.as_view(),name='search'),
 
 
 ]

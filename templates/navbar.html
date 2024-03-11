@@ -5,8 +5,8 @@
 
     <div class="collapse navbar-collapse" id="navbarToggler" >
         <h3> <a class="navbar-brand" href="#">SocialNetwork</a> </h3>
-        <form class="form-inline my-2 my-lg-0" method="" action="">
-            <input class="form-control mr-sm-2" type="search" name="search-term" placeholder="Search for friends" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" method="GET" action="{% url  'search' %}">
+            <input class="form-control mr-sm-2" type="search" name="search-term" placeholder="Search for friends" aria-label="Search" name = "search-trem">
         </form>
         <ul class="navbar-nav  ml-auto">
 

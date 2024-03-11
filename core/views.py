@@ -110,3 +110,15 @@ class FriendProfile(ListView):
         friend_username = self.kwargs['username']
         friend = User.objects.get(username = friend_username)
         return Post.objects.filter(user = friend).order_by('-date_created')
+    
+
+class SearchResulte(ListView):
+    model = User
+    template_name = "search-results.html"
+    paginate_by = 5
+
+
+    def get_queryset(self):
+        search_term = self.request.GET['search-term']
+        qs = User.objects.filter(username__contains=search_term)
+        return qs 
