@@ -1,3 +1,7 @@
+<p align="center">
+<img src="https://techstack-generator.vercel.app/django-icon.svg" alt="icon" width="100" height="100" />
+</p>
+
 # Django Social Network App
 
 Welcome to the Django Social Network App repository! This project is a social networking application developed using Django, designed to connect people and facilitate communication in a seamless way.
