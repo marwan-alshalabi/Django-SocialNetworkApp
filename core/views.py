@@ -113,7 +113,7 @@ class FriendProfile(ListView):
         friend = User.objects.get(username = friend_username)
         return Post.objects.filter(user = friend).order_by('-date_created')
     
-
+@method_decorator(login_required(login_url='login'),name='dispatch')
 class SearchResulte(ListView):
     model = User
     template_name = "search-results.html"
@@ -141,3 +141,11 @@ def unfollow_user(request,id):
     user_B=User.objects.get(id=id)
     Friends.objects.filter(user_A=request.user,user_B=user_B).delete()
     return redirect('/user/'+user_B.username)
+
+
+@method_decorator(login_required(login_url='login'),name='dispatch')
+class HomePage(ListView):
+    model = Post
+    template_name = "homepage.html"
+    paginate_by = 5
+

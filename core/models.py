@@ -15,6 +15,14 @@ class User(AbstractUser):
            return True
        else :
            return False
+       
+    def get_following(self):
+        followings = Friends.objects.filter(user_A=self)
+        temp = []
+        for item in followings:
+            temp.append(item.user_B.id)
+        return temp
+
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
