@@ -104,6 +104,8 @@ class FriendProfile(ListView):
         friend_username = self.kwargs['username']
         friend = User.objects.get(username = friend_username)
         context['friend'] = friend
+        is_following = self.request.user.is_following(friend)
+        context['is_following'] = is_following
         return context
 
     def get_queryset(self):

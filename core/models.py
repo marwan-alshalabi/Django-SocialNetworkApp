@@ -8,6 +8,13 @@ class User(AbstractUser):
 
     def get_num_posts(self):
         return Post.objects.filter(user=self).count()
+    
+    def is_following(self, user_B):
+       count = Friends.objects.filter(user_A=self,user_B=user_B).count()
+       if count > 0 :
+           return True
+       else :
+           return False
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

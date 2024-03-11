@@ -25,8 +25,12 @@
             <a href="#"><h4 >@{{friend.username}}</h4></a>
             <h6>{{friend.get_num_posts}} Posts</h6>
             <p>{{friend.bio}}</p>
-            <a href="/follow/{{friend.id}}"><button class="btn btn-success">Follow</button></a>
+            
+            {% if is_following  %}     
             <a href="/unfollow/{{friend.id}}"><button class="btn btn-danger">Unfollow</button></a>
+            {% else %}
+            <a href="/follow/{{friend.id}}"><button class="btn btn-success">Follow</button></a>
+            {% endif %}
         </div>
     </div>
 
