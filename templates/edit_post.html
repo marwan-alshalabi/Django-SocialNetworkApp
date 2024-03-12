@@ -16,6 +16,7 @@ Edit Post
 <br>
 <form method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
+    {{ caption|safe }}
     {% bootstrap_form form %}
 
     <input class="btn btn-primary" type="submit" value="Edit">

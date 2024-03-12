@@ -9,6 +9,7 @@ from .forms import SignupForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate , login , logout
 from django.utils.decorators import method_decorator
+from .forms import PostForm
 # Create your views here.
 
 
@@ -73,9 +74,10 @@ class AccountSettingsView(UpdateView):
 @method_decorator(login_required(login_url='login'),name='dispatch')
 class CreatePost(CreateView):
     model = Post
-    fields = ['caption']
+    # fields = ['caption']
     template_name = "new_post.html"
     success_url = '/profile/'
+    form_class = PostForm
 
     def form_valid(self, form):
         user = self.request.user
@@ -157,9 +159,10 @@ class HomePage(ListView):
 @method_decorator(login_required(login_url='login'),name='dispatch')
 class EditPost(UpdateView ):
     model = Post
-    fields = ['caption']
+    # fields = ['caption']
     template_name = "edit_post.html"
     success_url = '/profile/'
+    form_class = PostForm
 
 
 class DeletePost(DeleteView):
