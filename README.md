@@ -16,11 +16,10 @@ Welcome to the Django Social Network App repository! This project is a social ne
 ## Features
 - User authentication and authorization
 - Profile creation and customization
-- Friend search wizh username
+- Friend search with username
 - Friend follow and unfollow
 - Edit and delete Post
 - News feed for updates from friends
-- and more...
 
 ## Installation
 To get started with the Django Social Network App, follow these steps:
